@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18243a">
+  <meta name="description" content="Listen to Chhath geet, explore the four sacred days, prepare prasad, and discover the living traditions of Chhath Puja.">
+  <title>Chhath Vibe — Feel the devotion</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://img.youtube.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-theme="sunset">
+  <div class="scene" id="scene" aria-hidden="true">
+    <div class="scene-photo active" id="scenePhotoA"></div>
+    <div class="scene-photo" id="scenePhotoB"></div>
+
+        <!-- Cinematic video: sunrise background -->
+    <video
+      class="scene-video scene-video-sunrise"
+      id="sceneSunriseVideo"
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-hidden="true"
+    >
+      <source
+        src="https://jpejjdknjmwqvwrfdgka.supabase.co/storage/v1/object/public/cinematic-scenes/chhath-sunrise.mp4"
+        type="video/mp4"
+      />
+    </video>
+
+    <!-- Cinematic video: natural moving water -->
+    <video
+      class="scene-video scene-video-water"
+      id="sceneWaterVideo"
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-hidden="true"
+    >
+      <source
+        src="https://jpejjdknjmwqvwrfdgka.supabase.co/storage/v1/object/public/cinematic-scenes/water-ripples.mp4"
+        type="video/mp4"
+      />
+    </video>
+    
+    <div class="scene-tint"></div><div class="sun"></div><div class="sun-glow"></div>
+    <div class="horizon"></div><div class="river"></div><div class="river-glimmer"></div>
+    <div class="particles" id="particles"></div><div class="scene-vignette"></div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Chhath Vibe home">
+  <span class="brand-mark">☼</span>
+  <span>
+    <b>Chhath Vibe</b>
+    <small>FEEL THE DEVOTION</small>
+  </span>
+</a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#listen">Listen</a>
+      <a class="nav-link" href="#library">Song library <span class="nav-count" id="navSongCount">107</span></a>
+      <a class="nav-link" href="#rituals">Four days</a>
+      <a class="nav-link" href="#recipe">Thekua recipe</a>
+      <a class="nav-link" href="#gallery">Ghat gallery</a>
+      <a class="nav-link" href="#about">Our tradition</a>
+    </nav>
+   
+<div class="top-actions">
+  <button class="icon-button" id="themeToggle"
+    aria-label="Change visual mood"
+    title="Change visual mood">◐</button>
+
+  <button class="icon-button" id="addSongBtn"
+    aria-label="Add a YouTube song"
+    title="Add a song">＋</button>
+
+ 
+<!-- Instagram Profile -->
+<a
+  class="instagram-profile"
+  href="https://www.instagram.com/dhiraj__dheeru/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Visit Dhiraj's Instagram profile"
+  title="Follow Dhiraj "
+>
+  <svg
+    viewBox="0 0 24 24"
+    width="19"
+    height="19"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <rect x="3" y="3" width="18" height="18" rx="5"/>
+    <circle cx="12" cy="12" r="4"/>
+    <circle cx="17.5" cy="6.5" r="1"
+      fill="currentColor" stroke="none"/>
+  </svg>
+  <span class="instagram-name">Dhiraj-dheeru</span>
+</a>
+
+
+  <button class="mobile-menu icon-button" id="mobileMenu"
+    aria-label="Open menu" aria-expanded="false">☰</button>
+</div>
+
+  </header>
+
+
+
+  <main>
+
+    <!-- HOME PAGE -->
+<section class="home-section section-block" id="home">
+
+  <div class="home-welcome">
+    <p class="eyebrow">CHHATH GEET · FEEL THE DEVOTION</p>
+
+    <h1 class="home-title">
+      छठी मईया के गीत,
+      <span>आस्था और परंपरा</span>
+    </h1>
+
+    <p class="home-description">
+      Discover the melodies of Chhath Puja, learn about its sacred
+      traditions, prepare prasad, and celebrate the beauty of this festival.
+    </p>
+
+    <div class="home-actions">
+     <a class="primary-button" href="#listen">
+  ▶ Listen to Chhath Geet
+</a>
+
+      <a class="ghost-button" href="#rituals">
+        Explore Chhath traditions ↗
+      </a>
+    </div>
+  </div>
+
+  <div class="home-features">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">EXPLORE THE FESTIVAL</p>
+        <h2>Everything for your <em>Chhath journey.</em></h2>
+        <p class="section-desc">
+          Choose a section to listen, learn, prepare and celebrate.
+        </p>
+      </div>
+    </div>
+
+
+  </div>
+
+</section>
+<!-- END HOME PAGE -->
+    <section class="hero" id="listen">
+      <div class="hero-topline"><span class="live-dot"></span><span>DEVOTIONAL RADIO · CHHATH SPECIAL</span><span class="local-time" id="clock">--:--</span></div>
+      <div class="hero-copy" id="heroCopy">
+        <p class="eyebrow" id="eyebrow">A FESTIVAL OF FAITH & NATURE</p>
+        <h1 id="heroTitle">जय छठी मईया</h1>
+        <p class="hero-subtitle" id="heroSubtitle">Let every melody bring you closer to the river, the setting sun, and home.</p>
+        <div class="hero-actions">
+          <button class="primary-button" id="heroPlay"><span id="heroPlayIcon">▶</span><span id="heroPlayText">Play current song</span></button>
+          <a class="ghost-button" href="#library">Explore 107 geet <span>↘</span></a>
+        </div>
+      </div>
+      <div class="scene-caption"><span class="caption-line"></span><span id="sceneCaption">SANDHYA ARGHYA · THE GOLDEN HOUR</span></div>
+      <a class="hero-scroll" href="#playerSection" aria-label="Scroll to music player">SCROLL TO LISTEN <span>↓</span></a>
+    </section>
+
+    <section class="content-shell">
+      <section class="now-playing glass-panel" id="playerSection" aria-label="Now playing player">
+        <div class="now-left">
+          <div class="cover-wrap"><img id="currentCover" src="https://img.youtube.com/vi/8dNjbCHaGEc/hqdefault.jpg" alt="Current song thumbnail"><span class="cover-playing" id="coverPlaying">♫</span></div>
+          <div class="track-meta"><span class="track-kicker">NOW PLAYING</span><h2 id="currentTitle">Kaanch Hi Baans Ke Bahangiya</h2><p id="currentArtist">Anuradha Paudwal</p><span class="source-status" id="sourceStatus" role="status"><i></i> Player is ready when you are</span></div>
+        </div>
+        <div class="video-column">
+          <div class="video-frame-wrap">
+            <div id="youtubeHost" class="youtube-host"></div>
+            <div class="video-loading" id="videoLoading"><span class="loading-sun">☼</span><b>Preparing your song</b><small>Press Play to start listening</small></div>
+          </div>
+          <div class="video-note" id="videoNote">Music video provided by YouTube</div>
+          <div class="player-fallback" id="playerFallback" hidden><strong>This video cannot play inside the website.</strong><span>It may be blocked from embedding or temporarily unavailable.</span><a id="fallbackYoutubeLink" href="https://www.youtube.com/" target="_blank" rel="noopener">Open this song on YouTube ↗</a></div>
+        </div>
+        <div class="player-controls">
+          <div class="control-row">
+            <button class="player-icon" id="shuffleBtn" aria-label="Toggle shuffle" title="Shuffle">⤨</button>
+            <button class="player-icon" id="prevBtn" aria-label="Previous song" title="Previous">|◀</button>
+            <button class="big-play" id="playBtn" aria-label="Play" title="Play or pause">▶</button>
+            <button class="player-icon" id="nextBtn" aria-label="Next song" title="Next">▶|</button>
+            <button class="player-icon active" id="repeatBtn" aria-label="Toggle repeat" title="Repeat current song">↻</button>
+          </div>
+          <div class="timeline"><span id="elapsed">0:00</span><input id="seekBar" type="range" min="0" max="100" value="0" aria-label="Song progress"><span id="duration">--:--</span></div>
+          <div class="player-bottom">
+            <div class="volume-control"><button class="player-icon" id="muteBtn" aria-label="Mute" title="Mute or unmute">◖))</button><input id="volumeBar" type="range" min="0" max="100" value="80" aria-label="Volume"><span id="volumeLabel">80%</span></div>
+          </div>
+          <div class="extra-controls">
+            <button class="small-outline" id="favoriteBtn" aria-label="Add current song to favourites">♡ Add to favourites</button>
+            <button class="small-outline" id="queueBtn" aria-label="Show listening queue">☷ Listening queue</button>
+            <button class="small-outline" id="expandBtn" aria-label="Expand player">⛶ Expand</button>
+          </div>
+          <p class="up-next">Up next: <b id="upNext">Uga Hai Suraj Dev</b></p>
+          <a class="youtube-link" id="youtubeLink" href="https://www.youtube.com/watch?v=8dNjbCHaGEc" target="_blank" rel="noopener">Open current song on YouTube ↗</a>
+        </div>
+      </section>
+
+      <section class="featured-section section-block" aria-labelledby="featuredTitle">
+        <div class="section-heading">
+          <div><p class="eyebrow">A FEW BELOVED VOICES</p><h2 id="featuredTitle">Begin with the <em>classics.</em></h2><p class="section-desc">Start with familiar favourites, then explore the full song collection.</p></div>
+          <a class="text-link" href="#library">Browse all songs <span>↗</span></a>
+        </div>
+        <div class="featured-grid" id="featuredGrid"></div>
+      </section>
+
+      <section class="library-section section-block" id="library">
+        <div class="section-heading library-heading"><div><p class="eyebrow">YOUR DEVOTIONAL SOUNDTRACK</p><h2>Find your <em>bhakti.</em></h2><p class="section-desc">Search in English or Hindi transliteration, by song title, singer, or tradition.</p></div><div class="library-tools"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Try ‘suraj’, ‘Sharda Sinha’..." autocomplete="off" aria-label="Search songs or singers"><button type="button" class="clear-search" id="clearSearch" aria-label="Clear search" hidden>×</button></label><label class="artist-filter-label"><span>Artist</span><select id="artistFilter" aria-label="Filter by singer"><option value="All">All singers</option></select></label><button class="small-outline" id="favoritesFilter" aria-pressed="false">♡ Favourites</button></div></div>
+        <div class="category-row" id="categoryRow" aria-label="Filter song categories">
+          <button class="chip active" data-category="All" aria-pressed="true">All songs</button>
+          <button class="chip" data-category="Traditional" aria-pressed="false">Paramparik geet</button>
+          <button class="chip" data-category="Arghya" aria-pressed="false">Arghya songs</button>
+          <button class="chip" data-category="New Chhath Geet" aria-pressed="false">New Chhath geet</button>
+          <button class="chip" data-category="Surya Aarti" aria-pressed="false">Surya aarti</button>
+          <button class="chip" data-category="My songs" aria-pressed="false">My songs</button>
+        </div>
+        <div class="library-summary"><span id="resultCount">107 songs</span><span class="summary-dot">•</span><span>Choose any song to change the music and scene</span></div>
+        <div class="song-grid" id="songGrid"></div>
+        <div class="load-more-wrap"><button class="small-outline" id="loadMoreBtn" hidden>Load more songs ↓</button></div>
+        <div class="empty-state" id="emptyState" hidden><span>♫</span><h3>No songs found</h3><p>Try a different spelling or clear the filters.</p><button class="small-outline" id="emptyAddBtn">＋ Add a song</button></div>
+        <p class="catalog-note">This collection follows the 107-song list displayed on Chhath Geet Gatha. Some videos may be unavailable for embedded playback; use the YouTube link shown with the player if needed. You can add more songs from a YouTube URL.</p>
+      </section>
+
+      <section class="ritual-section section-block" id="rituals">
+        <div class="section-heading"><div><p class="eyebrow">THE VRAT, IN ORDER</p><h2>Chhath in four <em>days.</em></h2><p class="section-desc">A simple, at-a-glance guide to the four-day observance. Family and regional customs may vary.</p></div></div>
+        <div class="ritual-grid">
+          <article class="ritual-card"><span class="ritual-number">01</span><div class="ritual-icon">🌿</div><p class="ritual-hindi">नहाय खाय</p><h3>Nahay Khay</h3><p>The home and kitchen are prepared, and the vrat begins with a simple, sattvic meal.</p><span class="ritual-time">DAY ONE · PURIFICATION</span></article>
+          <article class="ritual-card"><span class="ritual-number">02</span><div class="ritual-icon">🥣</div><p class="ritual-hindi">खरना</p><h3>Kharna</h3><p>After a day of fasting, devotees traditionally prepare prasad such as kheer and roti at dusk.</p><span class="ritual-time">DAY TWO · PRASAD</span></article>
+          <article class="ritual-card"><span class="ritual-number">03</span><div class="ritual-icon">🌅</div><p class="ritual-hindi">संध्या अर्घ्य</p><h3>Sandhya Arghya</h3><p>Offerings are made to the setting sun at the ghat, with family and community gathered by the water.</p><span class="ritual-time">DAY THREE · SETTING SUN</span></article>
+          <article class="ritual-card"><span class="ritual-number">04</span><div class="ritual-icon">☀️</div><p class="ritual-hindi">उषा अर्घ्य</p><h3>Usha Arghya</h3><p>At sunrise, arghya is offered to the rising sun, followed by the traditional completion of the vrat.</p><span class="ritual-time">DAY FOUR · RISING SUN</span></article>
+        </div>
+        <div class="checklist-panel glass-panel"><div><p class="eyebrow">GET READY GENTLY</p><h3>Chhath preparation checklist</h3><p>Tick off the items you have prepared. Your checklist stays saved in this browser.</p></div><div class="checklist-grid" id="checklistGrid"><label><input type="checkbox" data-check="soop"> Bamboo soop / daura</label><label><input type="checkbox" data-check="fruits"> Seasonal fruits</label><label><input type="checkbox" data-check="thekua"> Thekua and prasad</label><label><input type="checkbox" data-check="diya"> Diyas and cotton wicks</label><label><input type="checkbox" data-check="sugarcane"> Sugarcane and coconuts</label><label><input type="checkbox" data-check="water"> Clean water and puja vessels</label></div><button class="text-link checklist-reset" id="resetChecklist">Reset checklist ↺</button></div>
+      </section>
+
+      <section class="recipe-section section-block" id="recipe">
+        <div class="recipe-art"><img src="https://dy3rma73kowlp.cloudfront.net/uploads/2025/10/Chhath-Puja-kosi-Samagri.jpg" alt="Traditional Chhath offerings, fruits and prasad" loading="lazy"></div>
+        <div class="recipe-content"><p class="eyebrow">PRASAD MADE AT HOME</p><h2>Thekua, made for <em>sharing.</em></h2><p class="section-desc">A practical starting recipe for homemade thekua. Ingredient amounts are approximate; adjust flour and liquid gradually for the dough.</p><label class="servings-control" for="thekuaServings">How many pieces? <select id="thekuaServings"><option value="10">10 pieces</option><option value="20" selected>20 pieces</option><option value="30">30 pieces</option><option value="40">40 pieces</option><option value="60">60 pieces</option></select></label><div class="ingredient-list" id="ingredientList"></div><div class="recipe-steps"><h3>Simple method</h3><ol><li>Dissolve jaggery in a little warm water and let it cool.</li><li>Mix flour, coconut, fennel and ghee; add jaggery water gradually to make a firm dough.</li><li>Shape small portions with a mould or fork pattern.</li><li>Fry on medium-low heat until golden, then cool fully before storing.</li></ol></div><p class="recipe-note">Use your family’s customary recipe and food-safety practices; proportions differ by household.</p></div>
+      </section>
+
+      <section class="gallery-section section-block" id="gallery">
+        <div class="section-heading"><div><p class="eyebrow">MEMORIES FROM THE GHAT</p><h2>A festival close to <em>nature.</em></h2><p class="section-desc">The baskets, the prasad, the water, and the shared moment facing the sun.</p></div><span class="gallery-caption">SOOP · THEKUA · DIYA · ARGHYA</span></div>
+        <div class="gallery-grid">
+          <figure class="gallery-item gallery-large"><img src="https://d3d343oddxxyuu.cloudfront.net/images/chapters/13f86901-b591-41e7-9af1-36f4e0490f4d.webp" alt="Devotees carrying offerings to the water at sunrise" loading="lazy"><figcaption><b>Usha Arghya</b><span>The first light over the water</span></figcaption></figure>
+          <figure class="gallery-item"><img src="https://dy3rma73kowlp.cloudfront.net/uploads/2025/10/Chhath-Puja-kosi-Samagri.jpg" alt="Fruits and traditional Chhath prasad arranged for offerings" loading="lazy"><figcaption><b>Prasad & daura</b><span>Offerings prepared with care</span></figcaption></figure>
+          <figure class="gallery-item"><img src="https://media.assettype.com/outlookindia/2024-11-08/o4oe00md/WhatsApp-Image-2024-11-08-at-11.50.08.jpeg?ar=40%3A21&auto=format%2Ccompress&enlarge=true&mode=crop&ogImage=true&overlay=false&overlay_position=bottom&overlay_width=100&w=1200" alt="A devotee offering arghya at the river" loading="lazy"><figcaption><b>Arghya</b><span>A quiet moment of gratitude</span></figcaption></figure>
+          <figure class="gallery-item gallery-wide"><img src="https://mithilalegacy.com/_next/image?q=75&url=%2Fimages%2Ffestivals%2Fchhath-puja.png&w=3840" alt="Families gathered at a river for Chhath Puja" loading="lazy"><figcaption><b>At the ghat</b><span>Faith, family and community</span></figcaption></figure>
+        </div>
+        <p class="photo-note">Photographs load from their source websites and require an internet connection.</p>
+      </section>
+
+      <section class="tradition-section section-block" id="about">
+        <div class="tradition-art"><div class="art-sun"></div><div class="art-water"></div><span class="art-leaf leaf-one">❧</span><span class="art-leaf leaf-two">❧</span><span class="art-caption">A PRAYER TO THE SUN</span></div>
+        <div class="tradition-copy"><p class="eyebrow">MORE THAN A MELODY</p><h2>A tradition carried<br>from <em>heart to heart.</em></h2><p>Chhath is a celebration of gratitude to Surya Dev and Chhathi Maiya. From thekua prepared at home to arghya offered by the river, every ritual carries a story of faith, family, and nature.</p><div class="tradition-points"><span>✦ Gratitude to nature</span><span>✦ Songs passed through generations</span><span>✦ A celebration that brings us home</span></div></div>
+      
+      
+      </section>
+
+       <div class="home-feature-grid">
+
+      <a class="home-feature-card" href="#listen">
+        <span class="home-feature-icon">🎵</span>
+        <h3>Listen to Songs</h3>
+        <p>Play devotional songs with music videos and changing visuals.</p>
+        <span class="home-feature-link">Start listening ↗</span>
+      </a>
+
+      <a class="home-feature-card" href="#library">
+        <span class="home-feature-icon">♫</span>
+        <h3>Song Library</h3>
+        <p>Explore songs by title, singer and category. Save favourites.</p>
+        <span class="home-feature-link">Explore songs ↗</span>
+      </a>
+
+      <a class="home-feature-card" href="#rituals">
+        <span class="home-feature-icon">🌅</span>
+        <h3>Four Sacred Days</h3>
+        <p>Learn about Nahay Khay, Kharna and both Arghya rituals.</p>
+        <span class="home-feature-link">Learn rituals ↗</span>
+      </a>
+
+      <a class="home-feature-card" href="#recipe">
+        <span class="home-feature-icon">🥣</span>
+        <h3>Thekua Recipe</h3>
+        <p>Discover ingredients and adjust quantities for your family.</p>
+        <span class="home-feature-link">View recipe ↗</span>
+      </a>
+
+      <a class="home-feature-card" href="#gallery">
+        <span class="home-feature-icon">📸</span>
+        <h3>Ghat Gallery</h3>
+        <p>Explore festival photographs, offerings and traditions.</p>
+        <span class="home-feature-link">View gallery ↗</span>
+      </a>
+
+      <a class="home-feature-card" href="#about">
+        <span class="home-feature-icon">🪔</span>
+        <h3>Our Tradition</h3>
+        <p>Discover the faith, gratitude and culture behind Chhath Puja.</p>
+        <span class="home-feature-link">Discover more ↗</span>
+      </a>
+
+    </div>
+
+      <footer class="footer"><a class="brand footer-brand" href="#listen"><span class="brand-mark">☼</span><span><b>Chhath Geet</b><small>EXPLORE · FEEL · CELEBRATE</small></span></a><p>Made with devotion. Songs are embedded from YouTube; playback availability depends on each video and region. Rights belong to their respective owners.</p><a href="#listen">Back to top ↑</a></footer>
+ </section>
+
+  </main>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" hidden>
+  <a href="#home">Home</a>
+  <a href="#listen">Listen</a>
+  <a href="#library">Song library</a>
+  <a href="#rituals">Four days</a>
+  <a href="#recipe">Thekua recipe</a>
+  <a href="#gallery">Ghat gallery</a>
+  <a href="#about">Our tradition</a>
+</nav>
+
+  <aside class="queue-drawer" id="queueDrawer" aria-hidden="true" aria-label="Listening queue"><div class="drawer-head"><div><span class="track-kicker">YOUR LISTENING QUEUE</span><h3>Up next</h3><p id="queueCount">107 songs</p></div><button class="icon-button" id="closeQueue" aria-label="Close queue">×</button></div><label class="queue-search"><span>⌕</span><input id="queueSearch" type="search" placeholder="Find a song in the queue" aria-label="Search queue"></label><div id="queueList" class="queue-list"></div></aside>
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+
+  <dialog id="addSongDialog" class="add-dialog"><form id="addSongForm"><div class="dialog-head"><div><p class="eyebrow">GROW YOUR PLAYLIST</p><h2>Add a song</h2></div><button type="button" class="icon-button" id="closeAddDialog" aria-label="Close">×</button></div><p class="dialog-help">Paste a YouTube video URL. The song is saved in this browser. If possible, use the singer or official label's video.</p><label>Song title<input name="title" required maxlength="100" placeholder="e.g. Chhath Maiya Aili"></label><label>Singer / artist<input name="artist" maxlength="100" placeholder="Artist name"></label><label>YouTube video URL<input name="url" required type="url" placeholder="https://www.youtube.com/watch?v=..."></label><label>Song type<select name="category"><option value="New Chhath Geet">New Chhath geet</option><option value="Traditional">Paramparik geet</option><option value="Arghya">Arghya song</option><option value="Surya Aarti">Surya aarti</option></select></label><label>Visual mood<select name="theme"><option value="sunset">Sunset Arghya</option><option value="sunrise">Sunrise prayer</option><option value="festive">Festival lights</option><option value="river">Calm river</option></select></label><div class="dialog-actions"><button type="button" class="small-outline" id="cancelAdd">Cancel</button><button class="primary-button" type="submit">Add to library</button></div><p class="form-message" id="formMessage" role="status"></p></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+</body>
+</html>

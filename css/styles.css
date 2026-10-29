@@ -1,0 +1,1291 @@
+:root{--ink:#fbf6ec;--muted:#c3c9d4;--soft:#9da8ba;--navy:#111a2d;--navy-2:#18243a;--orange:#f6a34e;--gold:#ffd08a;--line:rgba(255,255,255,.13);--panel:rgba(18,27,46,.88);--ease:cubic-bezier(.2,.75,.25,1);--radius:24px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}body{margin:0;background:#111a2d;color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden}body,button,input,select{font-family:"DM Sans",system-ui,sans-serif}button,input,select{font-size:inherit}button,a{touch-action:manipulation}button{cursor:pointer}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:3px}::selection{background:#ffd08a;color:#18243a}[hidden]{display:none!important}.scene{position:fixed;z-index:-1;inset:0;overflow:hidden;background:#142238}
+
+.scene-photo{
+  opacity: 0;
+transition: opacity 1.8s ease-in-out;
+
+  position:absolute;inset:0;background-position:center;background-size:cover;opacity:0;transform:scale(1.025);transition:opacity 1.2s ease,transform 8s linear;will-change:opacity}
+  
+  .scene-photo.active{opacity:1;transform:scale(1.07)}.scene-tint{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,20,34,.78),rgba(18,25,40,.25) 70%),linear-gradient(180deg,rgba(13,19,31,.5),rgba(16,25,42,.17) 35%,#111a2d 100%);transition:background 1s ease}.sun{position:absolute;top:20%;right:20%;width:118px;height:118px;border-radius:50%;background:#ffdf9b;box-shadow:0 0 35px 10px rgba(255,191,102,.22),0 0 100px 30px rgba(255,168,70,.25);animation:sunBreath 7s ease-in-out infinite;transition:all 1.2s ease}.sun-glow{position:absolute;width:420px;height:420px;right:calc(20% - 150px);top:calc(20% - 150px);border-radius:50%;background:radial-gradient(circle,rgba(255,189,99,.2),transparent 66%);filter:blur(5px);transition:all 1.2s ease}.horizon{position:absolute;left:0;right:0;bottom:20%;height:22%;background:linear-gradient(180deg,rgba(255,183,106,.1),rgba(14,25,41,.3));clip-path:polygon(0 40%,10% 30%,24% 43%,37% 23%,52% 38%,67% 32%,80% 45%,100% 26%,100% 100%,0 100%)}.river{position:absolute;bottom:0;left:0;right:0;height:32%;background:linear-gradient(180deg,rgba(240,173,105,.05),rgba(31,55,72,.58) 30%,rgba(13,25,42,.96));transition:background 1s ease}.river-glimmer{position:absolute;bottom:5%;left:30%;width:45%;height:26%;opacity:.55;background:repeating-linear-gradient(180deg,transparent 0 7px,rgba(255,211,148,.3) 8px 9px,transparent 10px 19px);mask-image:linear-gradient(90deg,transparent,black 30%,black 65%,transparent);animation:waterMove 8s linear infinite}.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}.particle{position:absolute;width:4px;height:4px;border-radius:50%;background:#ffd9a0;box-shadow:0 0 12px #ffb45e;animation:floatUp var(--duration,8s) linear infinite;animation-delay:var(--delay,0s)}body[data-theme="sunrise"] .sun{top:13%;right:24%;background:#fff1b8;box-shadow:0 0 75px rgba(255,225,149,.56),0 0 145px rgba(255,201,106,.24)}body[data-theme="sunrise"] .sun-glow{top:8%;right:13%;background:radial-gradient(circle,rgba(255,216,136,.3),transparent 70%)}body[data-theme="sunrise"] .scene-tint{background:linear-gradient(90deg,rgba(31,29,40,.66),rgba(35,32,42,.12) 74%),linear-gradient(180deg,rgba(16,23,38,.28),rgba(16,25,42,.08) 38%,#111a2d 100%)}body[data-theme="festive"] .sun{width:78px;height:78px;right:26%;top:24%;background:#ffbb71;box-shadow:0 0 75px rgba(255,132,44,.55)}body[data-theme="festive"] .sun-glow{background:radial-gradient(circle,rgba(255,126,61,.28),transparent 70%)}body[data-theme="festive"] .scene-tint{background:linear-gradient(90deg,rgba(28,18,33,.72),rgba(31,18,37,.24) 74%),linear-gradient(180deg,rgba(16,23,38,.28),rgba(16,25,42,.1) 38%,#111a2d 100%)}
+body[data-theme="river"] .sun {
+  background: #ffd28a;
+  box-shadow:
+    0 0 35px 10px rgba(255, 191, 102, .28),
+    0 0 85px 25px rgba(255, 168, 70, .22);
+}
+
+body[data-theme="river"] .sun-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255, 189, 99, .24),
+    transparent 70%
+  );
+}
+
+body[data-theme="river"] .sun-glow{background:radial-gradient(circle,rgba(172,224,219,.18),transparent 70%)}body[data-theme="river"] .scene-tint{background:linear-gradient(90deg,rgba(9,22,39,.75),rgba(15,39,52,.2) 74%),linear-gradient(180deg,rgba(13,20,33,.32),rgba(16,25,42,.1) 38%,#111a2d 100%)}@keyframes sunBreath{0%,100%{transform:scale(1);opacity:.95}50%{transform:scale(1.035);opacity:1}}@keyframes waterMove{from{transform:translateY(0)}to{transform:translateY(20px)}}@keyframes floatUp{0%{transform:translateY(14vh) scale(.5);opacity:0}15%{opacity:.78}85%{opacity:.54}100%{transform:translateY(-90vh) scale(1.3);opacity:0}}@keyframes copyIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}@keyframes shimmer{0%,100%{opacity:.5;transform:scale(.99)}50%{opacity:1;transform:scale(1.01)}}
+.topbar{height:78px;position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 clamp(20px,5vw,78px);background:linear-gradient(180deg,rgba(11,18,31,.86),rgba(11,18,31,.42));backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}.brand-mark{display:grid;place-items:center;width:39px;height:39px;border:1px solid rgba(255,190,115,.55);border-radius:50%;color:#ffbd6b;font-size:28px;background:rgba(255,167,80,.08)}.brand b{display:block;font-size:15px;letter-spacing:.02em}.brand small{display:block;margin-top:3px;font-size:8px;letter-spacing:.19em;color:#d9b78e}.desktop-nav{display:flex;align-items:center;justify-content:center;gap:clamp(14px,2.5vw,32px)}.nav-link{font-size:12px;color:#d4d1ce;white-space:nowrap;transition:color .2s}.nav-link:hover,.nav-link.active{color:#ffc17a}.nav-count{font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(255,190,115,.13);color:#ffcf91}.top-actions{display:flex;gap:8px;flex-shrink:0}.icon-button{width:39px;height:39px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;font-size:20px;display:grid;place-items:center;transition:background .2s,transform .2s}.icon-button:hover{background:rgba(255,255,255,.15);transform:translateY(-1px)}.mobile-menu{display:none}
+.hero{min-height:575px;height:min(78vh,780px);max-height:790px;position:relative;display:flex;flex-direction:column;justify-content:center;padding:64px clamp(22px,8vw,132px) 105px}.hero-topline{position:absolute;top:30px;left:clamp(22px,8vw,132px);right:clamp(22px,8vw,132px);display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.19em;color:#e6d7c5}.live-dot{width:7px;height:7px;border-radius:50%;background:#ffb85d;box-shadow:0 0 12px #ffb85d}.local-time{margin-left:auto;font-size:12px;letter-spacing:0;color:#fff}.hero-copy{max-width:750px;animation:copyIn .85s var(--ease) both}.eyebrow{margin:0 0 15px;font-size:10px;font-weight:700;letter-spacing:.22em;color:#ffca8b;text-transform:uppercase}.hero h1{font-family:"Tiro Devanagari Hindi",Georgia,serif;font-weight:400;font-size:clamp(52px,8vw,116px);line-height:1.17;letter-spacing:.015em;margin:0 0 18px;text-shadow:0 5px 38px rgba(0,0,0,.24)}.hero-subtitle{max-width:540px;color:#f0e4d7;font-size:clamp(14px,1.5vw,17px);line-height:1.85;margin:0}.hero-actions{display:flex;gap:13px;align-items:center;margin-top:28px}.primary-button,.ghost-button,.small-outline{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;padding:13px 20px;font-size:12px;font-weight:700;border:0;transition:transform .2s,background .2s,border-color .2s;white-space:nowrap}.primary-button{background:linear-gradient(135deg,#ffbd68,#f7892d);color:#20172a;box-shadow:0 9px 30px rgba(255,123,31,.25)}.primary-button:hover{transform:translateY(-2px);background:linear-gradient(135deg,#ffd08b,#ff9a3f)}.ghost-button{border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.07);color:#fff;backdrop-filter:blur(12px)}.ghost-button:hover,.small-outline:hover{background:rgba(255,255,255,.13);border-color:rgba(255,195,128,.45)}.scene-caption{position:absolute;right:clamp(22px,8vw,132px);bottom:43px;display:flex;align-items:center;gap:10px;font-size:9px;letter-spacing:.17em;color:#f0d8bc}.caption-line{width:35px;height:1px;background:#ffbd6b}.hero-scroll{position:absolute;bottom:25px;left:clamp(22px,8vw,132px);font-size:8px;letter-spacing:.18em;color:rgba(255,255,255,.68);display:flex;gap:11px;align-items:center}.hero-scroll span{font-size:16px;color:var(--gold);animation:waterMove 2s ease-in-out infinite}
+.content-shell{position:relative;z-index:2;padding:0 clamp(16px,5vw,78px);background:linear-gradient(180deg,rgba(17,26,45,.42),#111a2d 130px,#111a2d 100%)}.glass-panel{background:linear-gradient(135deg,rgba(22,31,52,.96),rgba(30,34,52,.92));border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 65px rgba(0,0,0,.23);backdrop-filter:blur(24px)}.now-playing{position:relative;margin:-58px auto 0;max-width:1400px;border-radius:26px;padding:20px;display:grid;grid-template-columns:minmax(195px,.82fr) minmax(240px,1fr) minmax(250px,1fr);gap:20px;align-items:center}.now-left{display:flex;gap:14px;align-items:center;min-width:0}.cover-wrap{position:relative;flex:0 0 74px;width:74px;height:74px}.cover-wrap img{width:100%;height:100%;object-fit:cover;border-radius:16px;background:#202a3c;box-shadow:0 6px 20px #080d18}.cover-playing{position:absolute;right:-5px;bottom:-5px;width:25px;height:25px;display:grid;place-items:center;background:#ff8b21;color:#171b27;border:3px solid #1d2032;border-radius:50%;font-size:13px}.track-meta{min-width:0}.track-kicker{font-size:9px;letter-spacing:.19em;color:#f0b977;font-weight:700}.track-meta h2{font-size:15px;line-height:1.45;margin:7px 0 4px;overflow-wrap:anywhere}.track-meta p{margin:0;color:#b8bdcc;font-size:11px;line-height:1.5}.source-status{display:flex;align-items:center;gap:6px;margin-top:9px;color:#a5b0c2;font-size:9px;line-height:1.45}.source-status i{width:6px;height:6px;flex:0 0 6px;background:#e7a45d;border-radius:50%}.source-status.playing i{background:#75d6a0;box-shadow:0 0 8px #75d6a0}.video-column{min-width:0}.video-frame-wrap{position:relative;min-height:206px;aspect-ratio:16/9;border-radius:15px;overflow:hidden;background:radial-gradient(circle at 50% 30%,#31475a,#10182a 72%);border:1px solid rgba(255,255,255,.12)}.youtube-host{position:absolute;inset:0;width:100%;height:100%;min-height:200px}.youtube-host iframe{width:100%!important;height:100%!important;min-height:200px;border:0}.video-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(145deg,rgba(35,48,67,.96),rgba(12,20,35,.96));color:#fff;text-align:center;padding:16px;pointer-events:none;transition:opacity .4s}.video-loading.is-ready{opacity:0}.loading-sun{color:#ffc170;font-size:33px;animation:shimmer 2.8s ease-in-out infinite}.video-loading b{font-size:12px}.video-loading small{color:#aeb8c9;font-size:10px}.video-note{font-size:9px;color:#8794a8;padding:8px 2px 0}.player-fallback{display:grid;gap:5px;padding:10px;margin-top:8px;background:rgba(255,151,83,.1);border:1px solid rgba(255,151,83,.3);border-radius:11px;font-size:10px;color:#f4d7b5}.player-fallback span{color:#c5c9d1}.player-fallback a{color:#ffca8b;font-weight:700}.player-controls{min-width:0}.control-row{display:flex;align-items:center;justify-content:space-between;gap:clamp(3px,.8vw,12px)}.player-icon{border:0;background:transparent;color:#c4cada;font-size:19px;padding:8px;min-width:29px;transition:color .2s,transform .2s}.player-icon:hover,.player-icon.active{color:#ffbc68;transform:scale(1.05)}.big-play{flex:0 0 54px;width:54px;height:54px;border:0;border-radius:50%;background:linear-gradient(145deg,#ffbd68,#f77a18);color:#10182a;font-size:20px;box-shadow:0 0 0 5px rgba(255,154,41,.09),0 8px 24px rgba(255,118,11,.24);display:grid;place-items:center}.timeline{display:grid;grid-template-columns:35px minmax(50px,1fr) 35px;gap:8px;align-items:center;margin-top:13px;color:#aeb6c7;font-size:10px;font-variant-numeric:tabular-nums}.timeline span:last-child{text-align:right}.timeline input{accent-color:#ff8b21;cursor:pointer;width:100%;height:4px}.player-bottom{display:flex;align-items:center;gap:12px;margin-top:10px}.volume-control{display:flex;align-items:center;gap:7px;width:100%;min-width:0}.volume-control input{accent-color:#ff8b21;width:min(120px,100%)}.volume-control span{font-size:10px;color:#aeb6c7;min-width:29px}.extra-controls{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.extra-controls .small-outline{font-size:9px;padding:8px 10px}.small-outline{background:rgba(255,255,255,.045);color:#e6e8ee;border:1px solid var(--line);padding:10px 14px}.small-outline.active{border-color:#ffad4f;color:#ffbf70;background:rgba(255,154,43,.12)}.up-next{margin:12px 0 5px;color:#9ea9bc;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.up-next b{color:#e7e9ef;font-weight:500}.youtube-link{font-size:10px;color:#d8deeb;display:inline-block}.youtube-link:hover{color:#ffc17a}
+.section-block{max-width:1320px;margin-left:auto;margin-right:auto}.featured-section{padding:82px 0 15px}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:25px}.section-heading h2,.tradition-copy h2,.recipe-content h2{font-size:clamp(30px,4vw,46px);line-height:1.15;font-weight:500;letter-spacing:-.04em;margin:0}.section-heading h2 em,.tradition-copy h2 em,.recipe-content h2 em{font-family:Georgia,serif;color:#ffc17a;font-weight:400}.section-desc{font-size:13px;color:#aeb7c9;line-height:1.7;margin:12px 0 0}.text-link{font-size:11px;color:#ffca8b;white-space:nowrap}.text-link:hover{color:#fff}.text-link span{font-size:14px}.featured-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:25px}.featured-card{display:flex;align-items:center;gap:12px;padding:12px;border-radius:17px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);min-width:0;transition:transform .22s,border-color .22s,background .22s}.featured-card:hover{transform:translateY(-3px);border-color:rgba(255,189,104,.4);background:rgba(255,255,255,.08)}.featured-card img{width:60px;height:60px;flex:0 0 60px;object-fit:cover;border-radius:12px;background:#202a3c}.featured-meta{min-width:0;flex:1}.featured-meta span{display:block;font-size:8px;letter-spacing:.12em;color:#ffbf79;text-transform:uppercase;margin-bottom:5px}.featured-meta b{display:block;font-size:11px;line-height:1.4;overflow-wrap:anywhere}.featured-meta small{display:block;font-size:9px;color:#aab5c7;margin-top:4px}.featured-play{width:32px;height:32px;flex:0 0 32px;border:1px solid rgba(255,255,255,.16);border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);color:#fff;font-size:12px}.featured-play:hover{background:#ffad4f;color:#172033}
+.library-section{padding:75px 0 70px}.library-heading{align-items:end}.library-tools{display:flex;gap:9px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.search-box{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:rgba(255,255,255,.055);border-radius:999px;padding:0 13px;height:43px;min-width:240px}.search-box>span{font-size:23px;color:#e3b77f}.search-box input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:#fff;font-size:11px}.search-box input::placeholder{color:#929db1}.clear-search{border:0;background:transparent;color:#aeb9ca;font-size:18px}.artist-filter-label{display:flex;align-items:center;gap:6px;color:#aeb9ca;font-size:10px}.artist-filter-label select,.servings-control select{max-width:150px;background:#1b263c;border:1px solid #344057;border-radius:999px;padding:11px 12px;color:#f5ead9;font-size:10px;outline:none}.category-row{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 15px}.chip{border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.045);color:#b9c2d2;padding:9px 14px;font-size:10px;transition:all .2s}.chip:hover,.chip.active{background:#f4a04b;color:#1a2030;border-color:#f4a04b}.library-summary{display:flex;align-items:center;gap:8px;font-size:10px;color:#97a4b8;margin:4px 0 18px}.library-summary #resultCount{color:#ffd09a;font-weight:700}.summary-dot{color:#d99f5d}.song-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.song-card{position:relative;display:flex;align-items:center;gap:11px;padding:12px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.045);transition:transform .22s,border-color .22s,background .22s;min-width:0}.song-card:hover{transform:translateY(-2px);background:rgba(255,255,255,.08);border-color:rgba(255,185,108,.36)}.song-card.current{background:linear-gradient(110deg,rgba(255,153,54,.14),rgba(255,255,255,.045));border-color:rgba(255,173,83,.55)}.song-thumb{width:62px;height:62px;flex:0 0 62px;border-radius:11px;object-fit:cover;background:#242c3d}.song-info{min-width:0;flex:1;padding-right:8px}.song-info h3{font-size:11px;line-height:1.45;margin:0 0 4px;overflow-wrap:anywhere}.song-info p{font-size:9px;color:#9da8bb;margin:0 0 7px;overflow-wrap:anywhere}.song-tags{font-size:8px;color:#e6b478;letter-spacing:.04em}.card-play{width:33px;height:33px;flex:0 0 33px;border:1px solid rgba(255,255,255,.17);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;font-size:12px;transition:all .2s}.card-play:hover,.song-card.current .card-play{background:#ff9a2e;color:#151c2a;border-color:#ff9a2e}.card-fav{position:absolute;right:13px;top:6px;border:0;background:transparent;color:#a7b0c1;font-size:16px;padding:3px}.card-fav.faved{color:#ff9d8b}.song-tags .tag-dot{color:#8b95a7}.empty-state{text-align:center;padding:45px 15px;color:#b7c1d2}.empty-state>span{font-size:35px;color:#f6b66d}.empty-state h3{color:#fff;margin:10px 0 4px}.empty-state p{font-size:12px}.load-more-wrap{text-align:center;padding-top:22px}.load-more-wrap .small-outline{min-width:180px}.catalog-note{font-size:10px;color:#8693a8;line-height:1.7;margin:22px 0 0;max-width:850px}
+.ritual-section{padding:70px 0 75px;border-top:1px solid rgba(255,255,255,.09)}.ritual-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:28px}.ritual-card{position:relative;min-height:280px;border:1px solid rgba(255,255,255,.11);border-radius:20px;padding:21px 18px;background:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.018));overflow:hidden}.ritual-card::before{content:"";position:absolute;width:140px;height:140px;right:-60px;top:-60px;border-radius:50%;background:radial-gradient(circle,rgba(255,183,96,.17),transparent 68%)}.ritual-number{position:absolute;top:18px;right:18px;color:rgba(255,255,255,.34);font-size:20px;font-weight:600}.ritual-icon{font-size:28px;margin-bottom:18px}.ritual-hindi{font-family:"Tiro Devanagari Hindi",serif;color:#ffca8b;font-size:17px;margin:0 0 7px}.ritual-card h3{font-size:18px;font-weight:500;margin:0 0 11px}.ritual-card p:not(.ritual-hindi){font-size:11px;line-height:1.75;color:#b1bdce;margin:0 0 18px}.ritual-time{font-size:8px;letter-spacing:.1em;color:#e3b77f}.checklist-panel{display:grid;grid-template-columns:.85fr 1.15fr;gap:25px;padding:22px 24px;margin-top:19px;border-radius:20px}.checklist-panel h3{font-size:20px;margin:0 0 7px}.checklist-panel p:not(.eyebrow){font-size:11px;color:#aab5c7;line-height:1.7;margin:0}.checklist-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-content:start}.checklist-grid label{display:flex;align-items:center;gap:8px;color:#d7dce6;font-size:10px;line-height:1.4}.checklist-grid input{accent-color:#f5a24c;width:15px;height:15px}.checklist-reset{grid-column:2;justify-self:start;margin-top:-8px}
+.recipe-section{display:grid;grid-template-columns:.85fr 1fr;gap:clamp(30px,7vw,90px);align-items:center;padding:58px 0 78px;border-top:1px solid rgba(255,255,255,.09)}.recipe-art{height:460px;border-radius:25px;overflow:hidden;position:relative;background:linear-gradient(145deg,#ddab7b,#a75b40 47%,#253a4a);box-shadow:0 25px 70px rgba(0,0,0,.22)}.recipe-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(8,16,29,.58))}.recipe-art img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}.recipe-art:hover img{transform:scale(1.035)}.recipe-content h2{margin-bottom:14px}.recipe-content .section-desc{margin-bottom:22px}.servings-control{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 14px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.04);font-size:11px;color:#e1d5c4}.servings-control select{max-width:none}.ingredient-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:15px 0 22px}.ingredient-item{display:flex;justify-content:space-between;gap:9px;padding:11px 12px;border-radius:10px;background:rgba(255,255,255,.045);font-size:10px;color:#c4ccda}.ingredient-item b{color:#ffd09a;font-weight:600;text-align:right}.recipe-steps h3{font-size:15px;margin:0 0 8px}.recipe-steps ol{padding-left:19px;margin:0;color:#b9c4d2;font-size:11px;line-height:1.85}.recipe-note{font-size:9px;color:#8d9ab0;line-height:1.7;margin-top:15px}
+.gallery-section{padding:70px 0 77px;border-top:1px solid rgba(255,255,255,.09)}.gallery-caption{font-size:8px;letter-spacing:.13em;color:#dfb27a;white-space:nowrap}.gallery-grid{display:grid;grid-template-columns:1.25fr .75fr .75fr;grid-template-rows:220px 220px;gap:13px;margin-top:26px}.gallery-item{position:relative;margin:0;border-radius:19px;overflow:hidden;background:linear-gradient(145deg,#bd805d,#24394a);border:1px solid rgba(255,255,255,.1)}.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .65s ease,filter .4s}.gallery-item:hover img{transform:scale(1.04);filter:saturate(1.1)}.gallery-item::after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(180deg,transparent,rgba(7,14,25,.82))}.gallery-item figcaption{position:absolute;z-index:1;left:17px;right:17px;bottom:15px;display:flex;flex-direction:column;gap:4px}.gallery-item figcaption b{font-size:13px;font-weight:600}.gallery-item figcaption span{font-size:10px;color:#e4d7c9}.gallery-large{grid-row:span 2}.gallery-wide{grid-column:2/span 2}.photo-note{font-size:9px;line-height:1.7;color:#8290a5;margin:12px 0 0}
+.tradition-section{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,7vw,100px);align-items:center;padding:55px 0 70px;border-top:1px solid rgba(255,255,255,.09)}.tradition-art{height:330px;border-radius:24px;position:relative;overflow:hidden;background:linear-gradient(180deg,#e88c57 0%,#b96c67 38%,#243a4d 70%,#10182a 100%);box-shadow:inset 0 0 80px rgba(255,187,117,.14)}.art-sun{position:absolute;width:130px;height:130px;top:50px;left:calc(50% - 65px);border-radius:50%;background:#ffe2a4;box-shadow:0 0 70px #ffb764}.art-water{position:absolute;left:0;right:0;bottom:0;height:46%;background:repeating-linear-gradient(180deg,rgba(255,199,127,.18) 0 2px,transparent 2px 12px),linear-gradient(180deg,rgba(38,59,74,.4),#0c1828)}.art-leaf{position:absolute;color:rgba(28,46,38,.85);font-size:190px;line-height:1}.leaf-one{left:-20px;top:20px;transform:rotate(-32deg)}.leaf-two{right:-30px;top:80px;transform:scaleX(-1) rotate(-25deg)}.art-caption{position:absolute;left:25px;bottom:22px;font-size:9px;letter-spacing:.2em}.tradition-copy>p:not(.eyebrow){color:#b4bdce;font-size:13px;line-height:1.9;margin:18px 0}.tradition-points{display:grid;gap:11px;color:#e4c49d;font-size:12px}.footer{border-top:1px solid rgba(255,255,255,.1);padding:25px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:18px;color:#8f9bb0}.footer p{max-width:580px;font-size:10px;line-height:1.7;text-align:center}.footer>a:last-child{font-size:11px;white-space:nowrap;color:#e6bd88}.footer-brand{transform:scale(.9);transform-origin:left center}
+.queue-drawer{position:fixed;z-index:60;top:0;right:0;width:min(420px,94vw);height:100dvh;background:#111a2d;border-left:1px solid var(--line);padding:24px;transform:translateX(105%);transition:transform .3s var(--ease);box-shadow:-20px 0 60px rgba(0,0,0,.3);overflow:auto}.queue-drawer.open{transform:translateX(0)}.drawer-head{display:flex;align-items:start;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:16px}.drawer-head h3{margin:6px 0 4px;font-size:24px}.drawer-head p{margin:0;color:#9eacc0;font-size:10px}.queue-search{display:flex;align-items:center;gap:8px;margin:15px 0 0;height:38px;padding:0 12px;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.04)}.queue-search span{font-size:20px;color:#e5b67d}.queue-search input{width:100%;background:transparent;color:#fff;border:0;outline:0;font-size:10px}.queue-list{display:grid;gap:8px;padding-top:13px}.queue-item{display:flex;gap:10px;align-items:center;padding:9px;border-radius:12px;border:1px solid transparent;background:rgba(255,255,255,.04);text-align:left;color:#fff;width:100%}.queue-item.active{border-color:#c88649;background:rgba(255,153,54,.1)}.queue-item img{width:48px;height:48px;flex:0 0 48px;object-fit:cover;border-radius:8px;background:#243047}.queue-item .queue-meta{min-width:0;flex:1}.queue-item b,.queue-item small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.queue-item b{font-size:10px}.queue-item small{color:#aab4c6;font-size:9px;margin-top:5px}.queue-item .queue-symbol{color:#ffbe78;font-size:13px}.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:55}.add-dialog{width:min(500px,calc(100% - 28px));max-height:90dvh;overflow:auto;border:1px solid rgba(255,255,255,.16);border-radius:22px;background:#111a2d;color:#fff;padding:25px;box-shadow:0 25px 100px rgba(0,0,0,.55)}.add-dialog::backdrop{background:rgba(4,8,18,.72);backdrop-filter:blur(5px)}.dialog-head{display:flex;justify-content:space-between;align-items:start}.dialog-head h2{margin:0 0 10px;font-size:28px}.dialog-help{font-size:12px;color:#aeb8c9;line-height:1.7;margin-bottom:20px}.add-dialog label{display:block;color:#dce1eb;font-size:11px;margin:13px 0}.add-dialog input,.add-dialog select{display:block;width:100%;margin-top:7px;background:#1b263c;border:1px solid #344057;border-radius:10px;padding:12px;color:#fff;outline:none;font-size:12px}.add-dialog input:focus,.add-dialog select:focus{border-color:#e9a056}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}.form-message{font-size:11px;color:#ffc17a;min-height:14px;line-height:1.5}.toast{position:fixed;z-index:100;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f8e4c7;color:#172033;padding:12px 18px;border-radius:999px;font-size:11px;box-shadow:0 10px 30px #0004;transition:all .25s;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-nav{position:fixed;z-index:40;top:70px;left:14px;right:14px;padding:12px;background:#111a2d;border:1px solid var(--line);border-radius:15px;box-shadow:0 20px 50px #0005}.mobile-nav a{display:block;padding:12px;border-radius:9px;font-size:13px}.mobile-nav a:hover{background:#ffffff12}.player-expanded .now-playing{position:fixed;z-index:45;left:50%;top:50%;transform:translate(-50%,-50%);width:min(1180px,calc(100% - 28px));max-height:calc(100dvh - 28px);overflow:auto;grid-template-columns:minmax(180px,.7fr) minmax(300px,1fr) minmax(230px,.9fr);gap:18px;margin:0;padding:24px;background:#10182a}.player-expanded .video-frame-wrap{min-height:230px}.player-expanded .drawer-backdrop{z-index:40}
+@media(max-width:1180px){.desktop-nav{gap:14px}.nav-link{font-size:10px}.now-playing{grid-template-columns:minmax(180px,.8fr) minmax(240px,1fr);}.player-controls{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}.control-row{justify-content:center;gap:clamp(15px,4vw,50px)}.player-bottom{justify-content:center}.extra-controls{justify-content:center}.up-next{text-align:center}.youtube-link{display:block;text-align:center}.featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.song-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.player-expanded .now-playing{grid-template-columns:minmax(180px,.8fr) minmax(240px,1fr)}.player-expanded .player-controls{grid-column:1/-1}}
+@media(max-width:760px){.topbar{height:68px;padding:0 16px;gap:10px}.desktop-nav{display:none}.mobile-menu{display:grid}.top-actions{gap:6px}.brand-mark{width:35px;height:35px}.hero{height:69vh;min-height:505px;max-height:680px;padding:50px 22px 96px;justify-content:center}.hero-topline{left:22px;right:22px;top:22px;font-size:8px;letter-spacing:.12em}.hero h1{font-size:clamp(47px,12.5vw,77px)}.hero-subtitle{font-size:13px;max-width:350px}.hero-actions{gap:8px;flex-wrap:wrap}.primary-button,.ghost-button{padding:12px 16px;font-size:11px}.scene-caption{left:22px;right:auto;bottom:38px;font-size:8px;max-width:80%;line-height:1.7}.hero-scroll{left:22px;bottom:15px;font-size:7px}.sun{right:12%;top:18%;width:85px;height:85px}.content-shell{padding:0 13px}.now-playing{padding:15px;border-radius:21px;margin-top:-36px;grid-template-columns:1fr;gap:15px}.now-left{padding-bottom:2px}.cover-wrap{width:66px;height:66px;flex-basis:66px}.track-meta h2{font-size:14px}.track-meta p{font-size:10px}.source-status{font-size:9px}.video-frame-wrap{min-height:220px}.player-controls{grid-column:auto;padding-top:13px}.control-row{gap:clamp(5px,2vw,18px)}.player-icon{padding:7px 4px;font-size:17px;min-width:27px}.big-play{width:48px;height:48px;flex-basis:48px;font-size:18px}.timeline{margin-top:12px;grid-template-columns:33px minmax(40px,1fr) 33px}.player-bottom{gap:10px}.extra-controls{gap:6px}.extra-controls .small-outline{padding:8px 10px}.library-section,.featured-section,.ritual-section,.gallery-section{padding:58px 0 48px}.section-heading{align-items:start;flex-direction:column;gap:17px}.section-heading h2,.tradition-copy h2,.recipe-content h2{font-size:34px}.section-desc{font-size:12px}.featured-grid{grid-template-columns:1fr;gap:9px;margin-top:18px}.featured-card img{width:55px;height:55px;flex-basis:55px}.featured-meta b{font-size:12px}.library-tools{width:100%;align-items:stretch;flex-direction:column;justify-content:flex-start}.search-box{min-height:43px;min-width:0;width:100%}.artist-filter-label{justify-content:space-between}.artist-filter-label select{flex:1;max-width:none}.favoritesFilter{align-self:flex-start}.category-row{margin:18px 0 14px;gap:6px}.chip{padding:8px 12px;font-size:9px}.song-grid{grid-template-columns:1fr;gap:8px}.song-card{padding:10px;gap:10px;border-radius:14px}.song-thumb{width:56px;height:56px;flex-basis:56px}.song-info h3{font-size:11px}.card-play{width:32px;height:32px;flex-basis:32px}.ritual-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:19px}.ritual-card{min-height:270px;padding:17px 14px}.ritual-card h3{font-size:16px}.ritual-card p:not(.ritual-hindi){font-size:10px}.ritual-time{font-size:7px}.checklist-panel{grid-template-columns:1fr;padding:18px;gap:17px}.checklist-grid{gap:11px}.checklist-reset{grid-column:1;margin-top:0}.recipe-section{grid-template-columns:1fr;padding:48px 0;gap:26px}.recipe-art{height:260px}.recipe-content h2{font-size:33px}.ingredient-list{grid-template-columns:1fr 1fr}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:205px 170px 170px;gap:9px;margin-top:20px}.gallery-large{grid-row:span 2}.gallery-wide{grid-column:1/span 2}.gallery-item{border-radius:14px}.gallery-item figcaption{left:11px;right:11px;bottom:11px}.gallery-item figcaption b{font-size:11px}.gallery-item figcaption span{font-size:8px}.gallery-caption{white-space:normal}.tradition-section{grid-template-columns:1fr;padding:37px 0 45px;gap:24px;margin-bottom:18px}.tradition-art{height:230px}.art-sun{width:95px;height:95px;left:calc(50% - 47px);top:38px}.art-leaf{font-size:140px}.tradition-copy>p:not(.eyebrow){font-size:12px}.footer{flex-wrap:wrap;justify-content:space-between;gap:10px}.footer p{order:3;flex-basis:100%;text-align:left;margin:0}.footer-brand{transform:scale(.85)}.player-expanded .now-playing{left:7px;right:7px;top:10px;transform:none;width:auto;max-height:calc(100dvh - 20px);padding:15px;grid-template-columns:1fr;overflow:auto}.player-expanded .video-frame-wrap{min-height:210px}.player-expanded .player-controls{grid-column:auto}.player-expanded .control-row{gap:10px}}
+@media(max-width:400px){.brand b{font-size:13px}.brand small{font-size:7px}.top-actions .icon-button{width:34px;height:34px}.hero h1{font-size:46px}.hero-actions{align-items:stretch}.hero-actions>*{flex:1}.ritual-grid{grid-template-columns:1fr}.ritual-card{min-height:230px}.gallery-grid{grid-template-rows:180px 150px 150px}.ingredient-list{grid-template-columns:1fr}.extra-controls .small-outline{font-size:8px;padding:8px}.video-frame-wrap{min-height:200px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* Keep the music player properly spaced on other page views. */
+body[data-page]:not([data-page="listen"]) #playerSection {
+  margin: 28px auto 32px;
+}
+/* ==========================================
+   CHHATH VIBE — HOME PAGE DESIGN
+========================================== */
+
+.home-section {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 88px) clamp(22px, 7vw, 110px) 80px;
+  color: var(--ink);
+}
+
+/* Welcome / hero content */
+
+.home-welcome {
+  position: relative;
+  max-width: 900px;
+  animation: homeWelcomeIn 0.9s ease both;
+}
+
+.home-welcome .eyebrow {
+  margin-bottom: 20px;
+  color: var(--gold);
+}
+
+.home-title {
+  max-width: 900px;
+  margin: 0 0 20px;
+  font-family: "Tiro Devanagari Hindi", Georgia, serif;
+  font-size: clamp(38px, 5.5vw, 76px);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  text-shadow: 0 5px 35px rgba(0, 0, 0, 0.25);
+}
+
+.home-title span {
+  display: block;
+  color: var(--gold);
+}
+
+.home-description {
+  max-width: 650px;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(14px, 1.35vw, 17px);
+  line-height: 1.9;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.home-actions a {
+  text-decoration: none;
+}
+
+/* Three highlights */
+
+.home-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 42px 0 70px;
+}
+
+.home-highlight {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  background: rgba(17, 26, 45, 0.66);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(14px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.home-highlight:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 199, 109, 0.55);
+}
+
+.home-highlight-icon {
+  color: var(--gold);
+  font-size: 25px;
+}
+
+.home-highlight-number {
+  color: var(--ink);
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 700;
+}
+
+.home-highlight-label {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Feature section */
+
+.home-features {
+  position: relative;
+  padding-top: 8px;
+}
+
+.home-features .section-heading {
+  margin-bottom: 26px;
+}
+
+.home-features .section-heading h2 {
+  max-width: 750px;
+  font-size: clamp(30px, 4.5vw, 48px);
+  line-height: 1.25;
+}
+
+.home-features .section-heading h2 em {
+  color: var(--gold);
+}
+
+.home-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.home-feature-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 235px;
+  padding: 25px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  background: linear-gradient(
+    145deg,
+    rgba(26, 37, 59, 0.91),
+    rgba(17, 27, 45, 0.81)
+  );
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.16);
+  color: var(--ink);
+  text-decoration: none;
+  backdrop-filter: blur(16px);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.home-feature-card::before {
+  content: "";
+  position: absolute;
+  top: -65px;
+  right: -65px;
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  background: rgba(255, 190, 105, 0.09);
+  filter: blur(24px);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.home-feature-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 199, 109, 0.5);
+  background: linear-gradient(
+    145deg,
+    rgba(39, 48, 68, 0.96),
+    rgba(23, 34, 53, 0.94)
+  );
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.23);
+}
+
+.home-feature-card:hover::before {
+  background: rgba(255, 190, 105, 0.18);
+}
+
+.home-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 199, 109, 0.26);
+  border-radius: 16px;
+  background: rgba(255, 190, 105, 0.1);
+  font-size: 25px;
+  transition: transform 0.3s ease;
+}
+
+.home-feature-card:hover .home-feature-icon {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.home-feature-card h3 {
+  position: relative;
+  margin: 0 0 10px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.home-feature-card p {
+  position: relative;
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.home-feature-link {
+  position: relative;
+  margin-top: auto;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.home-feature-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* Home entrance animation */
+
+@keyframes homeWelcomeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 950px) {
+  .home-section {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .home-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-highlights {
+    gap: 10px;
+  }
+
+  .home-highlight {
+    padding: 17px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .home-section {
+    padding: 38px 18px 55px;
+  }
+
+  .home-title {
+    font-size: clamp(34px, 10vw, 48px);
+    line-height: 1.4;
+  }
+
+  .home-description {
+    font-size: 13px;
+    line-height: 1.85;
+  }
+
+  .home-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .home-actions a {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .home-highlights {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 30px 0 48px;
+  }
+
+  .home-highlight {
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    align-items: center;
+    column-gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .home-highlight-icon {
+    grid-row: span 2;
+    font-size: 23px;
+  }
+
+  .home-highlight-number {
+    font-size: 17px;
+  }
+
+  .home-highlight-label {
+    font-size: 11px;
+  }
+
+  .home-features .section-heading h2 {
+    font-size: 32px;
+  }
+
+  .home-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .home-feature-card {
+    min-height: 190px;
+    padding: 21px;
+  }
+}
+
+/* Respect the user's reduced-motion setting */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-welcome {
+    animation: none;
+  }
+
+  .home-highlight,
+  .home-feature-card,
+  .home-feature-icon {
+    transition: none;
+  }
+}
+
+
+/* =========================================
+   CHHATH VIBES — LIGHT / DARK COLOR MODE
+   Existing song themes remain unchanged.
+========================================= */
+
+body {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+/* Light mode: warm sunlight, crystal cream and nature */
+body[data-mode="light"] {
+  --ink: #49351f;
+  --muted: #75634f;
+  --soft: #9a8165;
+  --navy: #fffaf0;
+  --navy-2: #f8ecd6;
+  --orange: #d98226;
+  --gold: #b87919;
+  --line: rgba(125, 86, 35, 0.18);
+  --panel: rgba(255, 251, 242, 0.94);
+  color: var(--ink);
+  color-scheme: light;
+}
+
+/* Main page background */
+body[data-mode="light"] {
+  background-color: #fff8eb;
+}
+
+/* Navigation and common panels */
+body[data-mode="light"] header,
+body[data-mode="light"] .site-header,
+body[data-mode="light"] .navbar {
+  background-color: rgba(255, 250, 239, 0.94);
+  border-color: var(--line);
+}
+
+/* Cards, song tiles and content panels */
+body[data-mode="light"] .card,
+body[data-mode="light"] .song-card,
+body[data-mode="light"] .feature-card,
+body[data-mode="light"] .home-feature-card,
+body[data-mode="light"] .ingredient-item,
+body[data-mode="light"] .featured-card {
+  background-color: rgba(255, 252, 245, 0.94);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+/* Text */
+body[data-mode="light"] h1,
+body[data-mode="light"] h2,
+body[data-mode="light"] h3,
+body[data-mode="light"] h4,
+body[data-mode="light"] p,
+body[data-mode="light"] label {
+  color: var(--ink);
+}
+
+/* Inputs and search boxes */
+body[data-mode="light"] input,
+body[data-mode="light"] select,
+body[data-mode="light"] textarea {
+  background-color: #fffdf8;
+  color: #49351f;
+  border-color: rgba(125, 86, 35, 0.3);
+}
+
+body[data-mode="light"] input::placeholder,
+body[data-mode="light"] textarea::placeholder {
+  color: #927d65;
+}
+
+/* Buttons */
+body[data-mode="light"] button {
+  border-color: var(--line);
+}
+
+body[data-mode="light"] .icon-button,
+body[data-mode="light"] #themeToggle {
+  background-color: #fff0d1;
+  color: #805016;
+}
+
+/* Queue drawer and player surfaces */
+body[data-mode="light"] #queueDrawer,
+body[data-mode="light"] #playerSection,
+body[data-mode="light"] .player-panel,
+body[data-mode="light"] .player-card {
+  background-color: rgba(255, 249, 237, 0.97);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+/* Footer */
+body[data-mode="light"] .footer {
+  background-color: #f5e7cd;
+  color: var(--ink);
+}
+
+/* Keep the animated Chhath scene visible in both modes */
+body[data-mode="light"] .scene {
+  opacity: 0.72;
+}
+
+/* Accessibility: keyboard focus */
+body[data-mode="light"] button:focus-visible,
+body[data-mode="light"] a:focus-visible,
+body[data-mode="light"] input:focus-visible,
+body[data-mode="light"] select:focus-visible {
+  outline: 2px solid #bd7b20;
+  outline-offset: 3px;
+}
+
+/* =========================================
+   LIGHT MODE READABILITY FIX — ALL SECTIONS
+========================================= */
+
+body[data-mode="light"] {
+  color: #49351f;
+  background: #fff8eb;
+  color-scheme: light;
+}
+
+/* Common section surfaces */
+body[data-mode="light"] main,
+body[data-mode="light"] section,
+body[data-mode="light"] .home-section,
+body[data-mode="light"] .featured-section,
+body[data-mode="light"] .home-feature-grid {
+  color: #49351f;
+}
+
+/* Navigation, links and readable text */
+body[data-mode="light"] a {
+  color: #87531d;
+}
+
+body[data-mode="light"] p,
+body[data-mode="light"] li,
+body[data-mode="light"] label,
+body[data-mode="light"] small,
+body[data-mode="light"] .muted,
+body[data-mode="light"] .subtitle,
+body[data-mode="light"] .description {
+  color: #705b43;
+}
+
+/* Cards and content blocks */
+body[data-mode="light"] .song-card,
+body[data-mode="light"] .feature-card,
+body[data-mode="light"] .home-feature-card,
+body[data-mode="light"] .featured-card,
+body[data-mode="light"] .ingredient-item,
+body[data-mode="light"] .queue-item,
+body[data-mode="light"] .modal,
+body[data-mode="light"] dialog {
+  color: #49351f;
+  background-color: #fffaf0;
+  border-color: rgba(125, 86, 35, 0.2);
+}
+
+/* Keep headings dark enough to read */
+body[data-mode="light"] h1,
+body[data-mode="light"] h2,
+body[data-mode="light"] h3,
+body[data-mode="light"] h4,
+body[data-mode="light"] .section-title {
+  color: #513719;
+}
+
+/* Search, filters and form controls */
+body[data-mode="light"] input,
+body[data-mode="light"] textarea,
+body[data-mode="light"] select {
+  color: #49351f;
+  background-color: #fffdf8;
+  border-color: #d9c4a3;
+}
+
+body[data-mode="light"] input::placeholder,
+body[data-mode="light"] textarea::placeholder {
+  color: #89765e;
+  opacity: 1;
+}
+
+/* Player and playlist */
+body[data-mode="light"] #queueDrawer,
+body[data-mode="light"] #playerSection,
+body[data-mode="light"] #queueSearch,
+body[data-mode="light"] #queueList {
+  color: #49351f;
+}
+
+body[data-mode="light"] #queueDrawer {
+  background-color: #fff8eb;
+}
+
+body[data-mode="light"] .queue-item.active {
+  background-color: #f3e2c3;
+}
+
+/* Buttons */
+body[data-mode="light"] .icon-button,
+body[data-mode="light"] #themeToggle {
+  color: #704512;
+  background-color: #ffedc8;
+}
+
+/* Footer */
+body[data-mode="light"] .footer {
+  color: #49351f;
+  background-color: #f5e7cd;
+}
+
+body[data-mode="light"] .footer p,
+body[data-mode="light"] .footer a {
+  color: #705334;
+}
+
+/* ==========================================
+   CHHATH VIBES — GLOBAL LIGHT MODE FIX V2
+========================================== */
+
+body[data-mode="light"] {
+  --ink: #382817;
+  --muted: #66513b;
+  --soft: #80684d;
+  --navy: #fffaf1;
+  --navy-2: #f5ead7;
+  --orange: #b96513;
+  --gold: #946015;
+  --line: rgba(105, 72, 31, 0.2);
+  --panel: rgba(255, 250, 240, 0.96);
+
+  background-color: #fff8eb !important;
+  color: #382817 !important;
+  color-scheme: light;
+}
+
+/* Main content sections */
+body[data-mode="light"] #playerSection,
+body[data-mode="light"] #library,
+body[data-mode="light"] #rituals,
+body[data-mode="light"] #recipe,
+body[data-mode="light"] #gallery,
+body[data-mode="light"] #about,
+body[data-mode="light"] .featured-section,
+body[data-mode="light"] .home-feature-grid {
+  background-color: #fff8eb !important;
+  background-image: none !important;
+  color: #382817 !important;
+  border-color: rgba(105, 72, 31, 0.18);
+}
+
+/* Headings: make every section title readable */
+body[data-mode="light"] main h1,
+body[data-mode="light"] main h2,
+body[data-mode="light"] main h3,
+body[data-mode="light"] main h4,
+body[data-mode="light"] main .section-title {
+  color: #513719 !important;
+  -webkit-text-fill-color: #513719;
+}
+
+/* Body text, labels and descriptions */
+body[data-mode="light"] main p,
+body[data-mode="light"] main li,
+body[data-mode="light"] main label,
+body[data-mode="light"] main small,
+body[data-mode="light"] main .muted,
+body[data-mode="light"] main .subtitle,
+body[data-mode="light"] main .description {
+  color: #66513b !important;
+  -webkit-text-fill-color: #66513b;
+}
+
+/* Navigation */
+body[data-mode="light"] .site-header,
+body[data-mode="light"] header {
+  background-color: rgba(255, 250, 240, 0.97);
+  border-color: rgba(105, 72, 31, 0.2);
+}
+
+body[data-mode="light"] .nav-link,
+body[data-mode="light"] .brand,
+body[data-mode="light"] .site-header a {
+  color: #60431f !important;
+}
+
+body[data-mode="light"] .nav-link.active {
+  color: #a65e13 !important;
+}
+
+/* Cards throughout the site */
+body[data-mode="light"] .song-card,
+body[data-mode="light"] .feature-card,
+body[data-mode="light"] .home-feature-card,
+body[data-mode="light"] .featured-card,
+body[data-mode="light"] .ingredient-item,
+body[data-mode="light"] .queue-item,
+body[data-mode="light"] .ritual-card,
+body[data-mode="light"] .day-card {
+  background: #fffdf7 !important;
+  color: #382817 !important;
+  border-color: rgba(105, 72, 31, 0.2) !important;
+  box-shadow: 0 8px 28px rgba(100, 68, 28, 0.06);
+}
+
+/* Card titles and details */
+body[data-mode="light"] .song-card *,
+body[data-mode="light"] .feature-card *,
+body[data-mode="light"] .home-feature-card *,
+body[data-mode="light"] .featured-card *,
+body[data-mode="light"] .ingredient-item *,
+body[data-mode="light"] .queue-item *,
+body[data-mode="light"] .ritual-card *,
+body[data-mode="light"] .day-card * {
+  color: #60482d;
+}
+
+/* Inputs and search */
+body[data-mode="light"] input,
+body[data-mode="light"] select,
+body[data-mode="light"] textarea {
+  color: #382817 !important;
+  background-color: #fffdf8 !important;
+  border-color: #d5bd98 !important;
+}
+
+body[data-mode="light"] input::placeholder,
+body[data-mode="light"] textarea::placeholder {
+  color: #80684d !important;
+  opacity: 1;
+}
+
+/* Playlist drawer and dialogs */
+body[data-mode="light"] #queueDrawer,
+body[data-mode="light"] dialog,
+body[data-mode="light"] #addSongDialog {
+  color: #382817 !important;
+  background-color: #fff8eb !important;
+  border-color: #dfc9a7;
+}
+
+body[data-mode="light"] #queueDrawer h2,
+body[data-mode="light"] #queueDrawer h3,
+body[data-mode="light"] dialog h2,
+body[data-mode="light"] dialog label {
+  color: #513719 !important;
+}
+
+/* Buttons */
+body[data-mode="light"] .icon-button,
+body[data-mode="light"] #themeToggle {
+  background-color: #ffedc8;
+  color: #704512;
+}
+
+/* Footer */
+body[data-mode="light"] .footer {
+  background-color: #f4e5ca !important;
+  color: #49351f !important;
+}
+
+body[data-mode="light"] .footer p,
+body[data-mode="light"] .footer a {
+  color: #60482d !important;
+}
+
+/* Keep the home hero photography and animated sun intact */
+body[data-mode="light"] #home,
+body[data-mode="light"] #home .scene,
+body[data-mode="light"] #home .scene-photo,
+body[data-mode="light"] #home .scene-tint {
+  background-image: revert;
+}
+
+/* Visible keyboard focus */
+body[data-mode="light"] button:focus-visible,
+body[data-mode="light"] a:focus-visible,
+body[data-mode="light"] input:focus-visible,
+body[data-mode="light"] select:focus-visible {
+  outline: 2px solid #a96b1d;
+  outline-offset: 3px;
+}
+
+
+/* HOME: continuous Chhath devotional atmosphere */
+
+#scene .sun {
+  transform-origin: center;
+  animation: chhathSunBreath 7s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+#scene .sun-glow {
+  animation: chhathSunGlow 7s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+#scene .river-glimmer {
+  animation: chhathWaterShimmer 6s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+#scene .scene-photo.active {
+  animation: chhathPhotoDrift 24s ease-in-out infinite alternate;
+}
+
+#scene .particle {
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes chhathSunBreath {
+  0%, 100% { transform: scale(1); opacity: .94; }
+  50% { transform: scale(1.07); opacity: 1; }
+}
+
+@keyframes chhathSunGlow {
+  0%, 100% { transform: scale(.96); opacity: .7; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes chhathWaterShimmer {
+  from { transform: translateY(-4px); opacity: .35; }
+  to { transform: translateY(8px); opacity: .8; }
+}
+
+@keyframes chhathPhotoDrift {
+  from { background-position: 50% 50%; }
+  to { background-position: 53% 48%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #scene .sun,
+  #scene .sun-glow,
+  #scene .river-glimmer,
+  #scene .scene-photo.active,
+  #scene .particle {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   CHHATH VIBES — VISUAL POLISH
+========================================== */
+
+/* Natural, gentle background movement */
+.scene-photo {
+  transition:
+    opacity 1.8s ease-in-out,
+    transform 12s ease-in-out;
+}
+
+.scene-photo.active {
+  transform: scale(1.055);
+}
+
+/* Warm golden sun */
+.scene .sun {
+  background: #ffd28a;
+  box-shadow:
+    0 0 35px 10px rgba(255, 191, 102, 0.28),
+    0 0 85px 25px rgba(255, 168, 70, 0.22);
+}
+
+/* Soft, atmospheric sun glow */
+.scene .sun-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255, 189, 99, 0.25),
+    transparent 70%
+  );
+  animation: chhathSunGlow 7s ease-in-out infinite;
+}
+
+@keyframes chhathSunGlow {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scale(0.97);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+/* Keep the main player compact on desktop */
+@media (min-width: 1181px) {
+  .now-playing {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .video-frame-wrap {
+    min-height: 0;
+  }
+
+  .youtube-host,
+  .youtube-host iframe {
+    min-height: 0;
+  }
+}
+
+/* Reduce excessive hero height on smaller screens */
+@media (max-width: 760px) {
+  .hero {
+    min-height: 480px;
+  }
+
+  .scene .sun {
+    width: 85px;
+    height: 85px;
+  }
+}
+
+
+/* ==========================================
+   CHHATH VIBES — CINEMATIC NATURE ENGINE
+   Soft water, sunlight, mist and depth
+========================================== */
+
+/* 1. Slow camera drift on the background photograph */
+.scene .scene-photo {
+  background-repeat: no-repeat;
+  background-size: cover;
+  will-change: opacity, transform, background-position;
+}
+
+.scene .scene-photo.active {
+  animation: chhathCameraDrift 22s ease-in-out infinite alternate;
+}
+
+@keyframes chhathCameraDrift {
+  0% {
+    background-position: 48% 50%;
+    transform: scale(1.035);
+  }
+  100% {
+    background-position: 53% 47%;
+    transform: scale(1.09);
+  }
+}
+
+/* 2. Gentle, moving water reflections */
+.scene .river {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.scene .river::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10%;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      177deg,
+      transparent 0px,
+      transparent 13px,
+      rgba(255, 205, 143, 0.10) 14px,
+      rgba(255, 225, 179, 0.22) 16px,
+      transparent 18px,
+      transparent 29px
+    );
+  background-size: 100% 65px;
+  opacity: 0.7;
+  animation: chhathWaterFlow 11s linear infinite;
+}
+
+.scene .river::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 10%,
+    rgba(255, 205, 139, 0.06) 35%,
+    rgba(255, 224, 174, 0.18) 49%,
+    rgba(255, 193, 117, 0.06) 62%,
+    transparent 85%
+  );
+  background-size: 220% 100%;
+  animation: chhathWaterReflection 9s ease-in-out infinite alternate;
+}
+
+@keyframes chhathWaterFlow {
+  from { transform: translate3d(-1%, -12px, 0); }
+  to   { transform: translate3d(1%, 28px, 0); }
+}
+
+@keyframes chhathWaterReflection {
+  from { background-position: 0% 50%; opacity: 0.45; }
+  to   { background-position: 100% 50%; opacity: 0.9; }
+}
+
+/* 3. Soft moving sunlight on the water */
+.scene .river-glimmer {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 7px,
+      rgba(255, 224, 173, 0.38) 8px 9px,
+      transparent 10px 19px
+    );
+  animation:
+    chhathWaterSparkle 5s ease-in-out infinite alternate,
+    waterMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes chhathWaterSparkle {
+  from { opacity: 0.25; filter: blur(1px); }
+  to   { opacity: 0.75; filter: blur(2px); }
+}
+
+/* 4. Gentle sunrise breathing effect */
+.scene .sun {
+  animation: chhathSunPulse 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.scene .sun-glow {
+  animation: chhathGlowPulse 9s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+@keyframes chhathSunPulse {
+  0%, 100% { transform: scale(1); opacity: 0.92; }
+  50%      { transform: scale(1.045); opacity: 1; }
+}
+
+@keyframes chhathGlowPulse {
+  from { transform: scale(0.96); opacity: 0.55; }
+  to   { transform: scale(1.08); opacity: 0.95; }
+}
+
+/* 5. Subtle atmospheric haze near the horizon */
+.scene .horizon {
+  overflow: hidden;
+}
+
+.scene .horizon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 213, 169, 0.10),
+    rgba(255, 234, 201, 0.20),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: chhathHorizonMist 18s ease-in-out infinite;
+}
+
+@keyframes chhathHorizonMist {
+  0%, 15% { transform: translateX(-100%); }
+  85%, 100% { transform: translateX(100%); }
+}
+
+/* 6. Slow, natural floating devotional particles */
+.scene .particle {
+  animation-name: chhathFloatingParticle;
+  animation-duration: var(--duration, 10s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes chhathFloatingParticle {
+  0% {
+    transform: translate3d(0, 12vh, 0) scale(0.55);
+    opacity: 0;
+  }
+  20% { opacity: 0.55; }
+  55% { transform: translate3d(12px, -35vh, 0) scale(0.9); }
+  85% { opacity: 0.35; }
+  100% {
+    transform: translate3d(-8px, -85vh, 0) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* 7. Respect visitors who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .scene .scene-photo.active,
+  .scene .river::before,
+  .scene .river::after,
+  .scene .river-glimmer,
+  .scene .sun,
+  .scene .sun-glow,
+  .scene .horizon::after,
+  .scene .particle {
+    animation: none !important;
+  }
+}
+
+/* =========================================
+   CHHATH VIBES — CINEMATIC VIDEO ENGINE
+========================================= */
+
+.scene .scene-video {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  border: 0;
+  object-fit: cover;
+  will-change: opacity;
+  opacity: 0;
+  transition: opacity 1.8s ease-in-out;
+}
+
+/* Sunrise footage blends with the existing scene */
+.scene .scene-video-sunrise {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Water footage fades naturally into the lower scene */
+.scene .scene-video-water {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 48%;
+  object-position: center 55%;
+  z-index: 1;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 15%,
+    black 55%,
+    black 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 15%,
+    black 55%,
+    black 100%
+  );
+}
+
+/* Keep the existing photo visible beneath the sunrise footage */
+body[data-theme="sunrise"] .scene-video-sunrise {
+  opacity: 0.58;
+}
+
+/* Blend the moving water subtly instead of showing a hard rectangle */
+.scene .scene-video-water {
+  opacity: 0.23;
+}
+
+/* Keep the foreground effects above both videos */
+.scene .scene-tint,
+.scene .sun-glow,
+.scene .sun,
+.scene .horizon,
+.scene .river,
+.scene .river-glimmer,
+.scene .particles,
+.scene .scene-vignette {
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .scene .scene-video-water {
+    height: 40%;
+    opacity: 0.18;
+  }
+
+  body[data-theme="sunrise"] .scene-video-sunrise {
+    opacity: 0.42;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene .scene-video {
+    display: none;
+  }
+}
+
+
+/* Instagram link in the top navigation */
+.top-actions .instagram-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.top-actions .instagram-link:hover {
+  color: #d9468f;
+  background: rgba(217, 70, 143, 0.12);
+  transform: translateY(-2px);
+}
+
+.top-actions .instagram-link:focus-visible {
+  outline: 2px solid #d9468f;
+  outline-offset: 3px;
+}
+
+.top-actions .instagram-link svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+/* Keep navigation controls compact on small screens */
+@media (max-width: 480px) {
+  .top-actions {
+    gap: 6px;
+  }
+
+  .top-actions .instagram-link {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+
+/* Dhiraj's Instagram profile in the navbar */
+.top-actions .instagram-profile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.25));
+  border-radius: 999px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.25s ease,
+              color 0.25s ease,
+              transform 0.25s ease;
+}
+
+.top-actions .instagram-profile:hover {
+  color: #d9468f;
+  background: rgba(217, 70, 143, 0.10);
+  transform: translateY(-2px);
+}
+
+.top-actions .instagram-profile svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.top-actions .instagram-name {
+  letter-spacing: 0.2px;
+}
+
+.top-actions .instagram-profile:focus-visible {
+  outline: 2px solid #d9468f;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .top-actions .instagram-profile {
+    gap: 4px;
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+
+  .top-actions .instagram-profile svg {
+    width: 17px;
+    height: 17px;
+  }
+}

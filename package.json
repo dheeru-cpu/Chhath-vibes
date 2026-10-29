@@ -1,0 +1,17 @@
+{
+  "name": "chhath-geet-website1",
+  "version": "1.0.0",
+  "description": "A front-end Chhath Puja music experience built with plain HTML, CSS and JavaScript. It keeps the original song-reactive theme idea and adds the 107-item song catalogue shown on Chhath Geet Gatha, plus a four-day ritual guide, preparation checklist, serving-scaled thekua ingredient list, ghat gallery, better search, singer filtering, favourites, queue search, custom song addition, and responsive navigation.",
+  "main": "check-songs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
+    "dotenv": "^18.0.9"
+  }
+}
