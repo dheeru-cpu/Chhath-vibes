@@ -1995,3 +1995,143 @@ select {
     line-height: 1;
   }
 }
+
+
+/* =====================================
+   CHHATH VIBE — PREMIUM SEARCH BAR
+   ===================================== */
+
+.search-box {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  min-height: 46px;
+  padding: 0 15px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 174, 77, 0.09),
+    rgba(255, 255, 255, 0.045)
+  );
+
+  border: 1px solid rgba(255, 183, 104, 0.25);
+  border-radius: 15px;
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Search icon */
+.search-box > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  color: #ffb45e;
+  font-size: 21px;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Search input */
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: #fff4e5;
+  font-size: 12px;
+  letter-spacing: 0.15px;
+}
+
+/* Placeholder */
+.search-box input::placeholder {
+  color: #9ca8bc;
+  opacity: 1;
+}
+
+/* Focus effect */
+.search-box:focus-within {
+  border-color: rgba(255, 174, 77, 0.85);
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 166, 64, 0.13),
+    rgba(255, 255, 255, 0.055)
+  );
+
+  box-shadow:
+    0 0 0 3px rgba(255, 166, 64, 0.09),
+    0 6px 22px rgba(255, 153, 54, 0.10);
+}
+
+.search-box:focus-within > span {
+  color: #ffd09a;
+  transform: scale(1.08);
+}
+
+/* Clear search button */
+.search-box .clear-search {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 25px;
+  padding: 0;
+
+  border: 1px solid transparent;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #c7cfdd;
+  font-size: 17px;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-box .clear-search:hover {
+  background: rgba(255, 174, 77, 0.15);
+  border-color: rgba(255, 174, 77, 0.3);
+  color: #ffc17c;
+}
+
+/* Mobile sizing */
+@media (max-width: 600px) {
+  .search-box {
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    min-height: 44px;
+    padding: 0 13px;
+    border-radius: 14px;
+    gap: 9px;
+  }
+
+  .search-box > span {
+    font-size: 19px;
+  }
+
+  .search-box input {
+    font-size: 12px;
+  }
+}
+
