@@ -1913,3 +1913,33 @@ select {
   }
 }
 
+
+/* Mobile performance improvement */
+@media (max-width: 760px) {
+
+  /* Reduce background animations */
+  #scene .sun,
+  #scene .sun-glow,
+  #scene .river-glimmer,
+  #scene .scene-photo.active,
+  #scene .particle {
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  /* Disable water video on mobile */
+  #scene .scene-video-water {
+    display: none;
+  }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
