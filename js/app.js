@@ -490,8 +490,12 @@ function applyTheme(theme, animate = true) {
     }
   }
 
-  playSceneVideo(sunriseVideo, key === "sunrise");
-  playSceneVideo(waterVideo, true);
+  const isMobileDevice = window.matchMedia("(max-width: 760px)").matches;
+
+// Mobile par background videos pause rakho.
+// Desktop par existing theme behavior maintain rahega.
+playSceneVideo(sunriseVideo, !isMobileDevice && key === "sunrise");
+playSceneVideo(waterVideo, !isMobileDevice);
 
   if (animate) {
     const hero = $("#heroCopy");
